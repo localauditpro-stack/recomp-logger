@@ -1,0 +1,195 @@
+:root {
+  --bg: #0e1116;
+  --surface: #161b22;
+  --surface-2: #1d242d;
+  --border: #2a323d;
+  --text: #e8edf2;
+  --muted: #8b97a5;
+  --accent: #4ade80;
+  --accent-dim: #1f3b2c;
+  --warn: #fbbf24;
+  --danger: #f87171;
+  --radius: 16px;
+  --tap: 52px;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+input, button, select, textarea { font-family: inherit; font-size: inherit; }
+
+.app {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: max(16px, env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom));
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.header h1 { font-size: 20px; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+.header .date { color: var(--muted); font-size: 14px; margin-top: 2px; }
+.linkbtn { background: none; border: none; color: var(--muted); font-size: 14px; padding: 8px; }
+
+/* Streak chips */
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.chip .num { font-weight: 700; color: var(--accent); }
+.chip.flame .num { color: var(--warn); }
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.card.primary { border-color: var(--accent-dim); box-shadow: 0 0 0 1px var(--accent-dim); }
+.card h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 14px;
+  font-weight: 600;
+}
+.card h2 .hint { float: right; text-transform: none; letter-spacing: 0; color: var(--muted); font-weight: 400; }
+
+/* Fields */
+.field { margin-bottom: 16px; }
+.field:last-child { margin-bottom: 0; }
+.field label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+.field label .target { color: var(--accent); }
+.input {
+  width: 100%;
+  height: var(--tap);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  padding: 0 14px;
+  font-size: 18px;
+}
+.input:focus { outline: none; border-color: var(--accent); }
+textarea.input { height: auto; min-height: 80px; padding: 12px 14px; resize: vertical; }
+
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* Segmented (weed / session / toggles) */
+.seg { display: grid; gap: 8px; grid-auto-flow: column; grid-auto-columns: 1fr; }
+.seg.wrap { grid-auto-flow: row; grid-template-columns: 1fr 1fr; }
+.segbtn {
+  min-height: var(--tap);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px;
+}
+.segbtn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+.segbtn.warn.active { background: #3a2f10; border-color: var(--warn); color: var(--warn); }
+.segbtn.danger.active { background: #3a1717; border-color: var(--danger); color: var(--danger); }
+
+/* Toggle row */
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0 16px;
+}
+.toggle.on { background: var(--accent-dim); border-color: var(--accent); }
+.toggle .knob { width: 26px; height: 26px; border-radius: 50%; background: var(--border); transition: background .15s; }
+.toggle.on .knob { background: var(--accent); }
+
+/* Save bar */
+.savebar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--bg) 70%, transparent);
+}
+.savebar .inner { max-width: 540px; margin: 0 auto; }
+.btn {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 14px;
+  background: var(--accent);
+  color: #06210f;
+  font-size: 18px;
+  font-weight: 700;
+}
+.btn:disabled { opacity: 0.5; }
+.btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); height: 48px; font-size: 16px; }
+
+/* Workout */
+.exercise { border-top: 1px solid var(--border); padding: 14px 0; }
+.exercise:first-of-type { border-top: none; }
+.exercise .ex-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.exercise .ex-name { font-weight: 600; font-size: 15px; }
+.exercise .ex-range { color: var(--muted); font-size: 13px; }
+.setlog { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.settag { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; font-size: 13px; }
+.setadd { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; }
+.setadd .input { height: 44px; font-size: 16px; }
+.setadd .addbtn { height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--accent); background: var(--accent-dim); color: var(--accent); font-weight: 600; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: calc(84px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-2);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  z-index: 50;
+}
+.banner {
+  background: #3a2f10; border: 1px solid var(--warn); color: var(--warn);
+  border-radius: 10px; padding: 8px 12px; font-size: 13px; margin-bottom: 14px;
+}
+
+/* Auth */
+.auth { max-width: 380px; margin: 12vh auto 0; padding: 0 20px; }
+.auth h1 { font-size: 24px; margin-bottom: 6px; }
+.auth p { color: var(--muted); margin-top: 0; margin-bottom: 22px; font-size: 15px; }
+.auth .field { margin-bottom: 14px; }
+.err { color: var(--danger); font-size: 14px; margin-top: 10px; }
+.center { text-align: center; color: var(--muted); padding: 30vh 0; }
